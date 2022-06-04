@@ -5,7 +5,10 @@ interface Coordinate {
 	y: number
 }
 
-export const matrixBinarySearch = (dayEventMatrix: DayEvent[][], dayEvent: DayEvent): Coordinate => {
+export const matrixBinarySearch = (
+	dayEventMatrix: DayEvent[][],
+	dayEvent: DayEvent
+): Coordinate => {
 	const nestedArrayLength = dayEventMatrix[0].length
 
 	let min = 0
@@ -15,7 +18,10 @@ export const matrixBinarySearch = (dayEventMatrix: DayEvent[][], dayEvent: DayEv
 	let middle2 = -1
 
 	while (middle2 < 0) {
-		if ((middle + 1) * nestedArrayLength > dayEvent.id && middle * nestedArrayLength <= dayEvent.id) {
+		if (
+			(middle + 1) * nestedArrayLength > dayEvent.id &&
+			middle * nestedArrayLength <= dayEvent.id
+		) {
 			middle2 = Math.floor((dayEventMatrix[middle].length - 1) / 2)
 		}
 		if ((middle + 1) * nestedArrayLength <= dayEvent.id) {

@@ -9,7 +9,9 @@ import { DayEvent } from './components/EventNotepad/types'
 
 export const Calendar: FC = () => {
 	const [selectedDay, setSelectedDay] = useState<string>(moment().toISOString())
-	const [selectedHourEvent, setSelectedHourEvent] = useState<DayEvent>({} as DayEvent)
+	const [selectedHourEvent, setSelectedHourEvent] = useState<DayEvent>(
+		{} as DayEvent
+	)
 
 	return (
 		<CalendarStyled>

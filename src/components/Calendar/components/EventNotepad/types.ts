@@ -1,4 +1,4 @@
 export interface DayEvent {
-	id: number,
+	id: number
 	event: string
 }

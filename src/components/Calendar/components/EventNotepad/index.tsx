@@ -2,7 +2,12 @@ import { FC, MouseEventHandler, useEffect, useState } from 'react'
 import moment from 'moment'
 
 import { DayEvent } from './types'
-import { EventNotepadStyled, EventNotepadCellStyled, EventNotepadBoardStyled, EventNotepadTimeStyled } from './EventNotepad.styled'
+import {
+	EventNotepadStyled,
+	EventNotepadCellStyled,
+	EventNotepadBoardStyled,
+	EventNotepadTimeStyled
+} from './EventNotepad.styled'
 import { matrixBinarySearch } from '../../../../helpers/matrixBinarySearch'
 
 interface EventNotepadProps {
@@ -11,7 +16,11 @@ interface EventNotepadProps {
 	setSelectedHourEvent: (newValue: DayEvent) => unknown
 }
 
-export const EventNotepad: FC<EventNotepadProps> = ({ selectedDay, selectedHourEvent, setSelectedHourEvent }) => {
+export const EventNotepad: FC<EventNotepadProps> = ({
+	selectedDay,
+	selectedHourEvent,
+	setSelectedHourEvent
+}) => {
 	const [events, setEvents] = useState<DayEvent[][]>([])
 
 	useEffect(() => {
@@ -26,10 +35,14 @@ export const EventNotepad: FC<EventNotepadProps> = ({ selectedDay, selectedHourE
 			const coordinates = matrixBinarySearch(currentDayParse, selectedHourEvent)
 			const { x, y } = coordinates
 
-			if (selectedHourEvent.event === currentDayParse[x][y].event) return setEvents(currentDayParse)
+			if (selectedHourEvent.event === currentDayParse[x][y].event)
+				return setEvents(currentDayParse)
 
 			currentDayParse[x][y].event = selectedHourEvent.event
-			localStorage.setItem(formattedSelectedDay, JSON.stringify(currentDayParse))
+			localStorage.setItem(
+				formattedSelectedDay,
+				JSON.stringify(currentDayParse)
+			)
 
 			return setEvents(currentDayParse)
 		}
@@ -46,11 +59,16 @@ export const EventNotepad: FC<EventNotepadProps> = ({ selectedDay, selectedHourE
 			}
 		}
 
-		localStorage.setItem(formattedSelectedDay, JSON.stringify(newDayEventMatrix))
+		localStorage.setItem(
+			formattedSelectedDay,
+			JSON.stringify(newDayEventMatrix)
+		)
 		setEvents(newDayEventMatrix)
 	}, [selectedDay, selectedHourEvent])
 
-	const onClickCell = (dayEvent: DayEvent): MouseEventHandler<HTMLDivElement> => {
+	const onClickCell = (
+		dayEvent: DayEvent
+	): MouseEventHandler<HTMLDivElement> => {
 		return () => {
 			setSelectedHourEvent(dayEvent)
 		}

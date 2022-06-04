@@ -10,7 +10,11 @@ interface FooterProps {
 	setSelectedHourEvent: (newValue: DayEvent) => unknown
 }
 
-export const Footer: FC<FooterProps> = ({ setSelectedDay, selectedHourEvent, setSelectedHourEvent }) => {
+export const Footer: FC<FooterProps> = ({
+	setSelectedDay,
+	selectedHourEvent,
+	setSelectedHourEvent
+}) => {
 	const onClickToday = () => {
 		setSelectedDay(moment().toISOString())
 	}
@@ -27,18 +31,12 @@ export const Footer: FC<FooterProps> = ({ setSelectedDay, selectedHourEvent, set
 
 	return (
 		<FooterStyled>
-			<FooterButton onClick={onClickToday}>
-				Today
-			</FooterButton>
+			<FooterButton onClick={onClickToday}>Today</FooterButton>
 			{selectedHourEvent.event && (
-				<FooterButton onClick={onClickRead}>
-					Read
-				</FooterButton>
+				<FooterButton onClick={onClickRead}>Read</FooterButton>
 			)}
 			{selectedHourEvent.id !== undefined && selectedHourEvent.event !== '' && (
-				<FooterButton onClick={onClickDelete}>
-					Delete
-				</FooterButton>
+				<FooterButton onClick={onClickDelete}>Delete</FooterButton>
 			)}
 		</FooterStyled>
 	)

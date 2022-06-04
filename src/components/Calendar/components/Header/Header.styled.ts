@@ -12,7 +12,7 @@ export const InterviewCalendarStyled = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 5px 10px;
-  border-bottom: 1px solid gray;
+	border-bottom: 1px solid gray;
 `
 export const AddButton = styled.button`
 	border: none;

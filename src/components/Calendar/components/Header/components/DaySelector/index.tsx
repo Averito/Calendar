@@ -1,7 +1,11 @@
 import { FC, MouseEventHandler, useEffect, useState } from 'react'
 import moment from 'moment'
 
-import { DaySelectorStyled, WeekDaySelectorStyled, WeekSlider } from './DaySelector.styled'
+import {
+	DaySelectorStyled,
+	WeekDaySelectorStyled,
+	WeekSlider
+} from './DaySelector.styled'
 import { momentFormat } from 'helpers/momentFormat'
 import { WeekDay } from './types'
 import { DayEvent } from '../../../EventNotepad/types'
@@ -12,7 +16,11 @@ interface DaySelectorProps {
 	setSelectedHourEvent: (newValue: DayEvent) => unknown
 }
 
-export const DaySelector: FC<DaySelectorProps> = ({ selectedDay, setSelectedDay, setSelectedHourEvent }) => {
+export const DaySelector: FC<DaySelectorProps> = ({
+	selectedDay,
+	setSelectedDay,
+	setSelectedHourEvent
+}) => {
 	const [week, setWeek] = useState<WeekDay[]>([] as WeekDay[])
 
 	useEffect(() => {
@@ -45,18 +53,23 @@ export const DaySelector: FC<DaySelectorProps> = ({ selectedDay, setSelectedDay,
 		setSelectedDay(newSelectedDay)
 	}
 	const onClickNextWeek = () => {
-		const newSelectedDay = moment(selectedDay).subtract(-7, 'days').toISOString()
+		const newSelectedDay = moment(selectedDay)
+			.subtract(-7, 'days')
+			.toISOString()
 		setSelectedDay(newSelectedDay)
 	}
 
-	const splitFormattedSelectedDay = moment(selectedDay).format('MMMM/YYYY').split('/')
+	const splitFormattedSelectedDay = moment(selectedDay)
+		.format('MMMM/YYYY')
+		.split('/')
 
 	return (
 		<DaySelectorStyled>
 			<WeekDaySelectorStyled>
 				{week.map(day => {
 					const splitDay = day.stringDate.split('/')
-					const selectedWeekDay = momentFormat(selectedDay) === day.stringDate ? 'selected' : ''
+					const selectedWeekDay =
+						momentFormat(selectedDay) === day.stringDate ? 'selected' : ''
 					return (
 						<div key={day.stringDate} onClick={onClickDay(day.ISOFormat)}>
 							<p>{splitDay[1].charAt(0)}</p>
@@ -67,7 +80,9 @@ export const DaySelector: FC<DaySelectorProps> = ({ selectedDay, setSelectedDay,
 			</WeekDaySelectorStyled>
 			<WeekSlider>
 				<button onClick={onClickPrevWeek}>{'<'}</button>
-				<p>{splitFormattedSelectedDay[0]} {splitFormattedSelectedDay[1]}</p>
+				<p>
+					{splitFormattedSelectedDay[0]} {splitFormattedSelectedDay[1]}
+				</p>
 				<button onClick={onClickNextWeek}>{'>'}</button>
 			</WeekSlider>
 		</DaySelectorStyled>

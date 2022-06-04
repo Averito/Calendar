@@ -1,6 +1,10 @@
 import { Dispatch, FC, MouseEventHandler, SetStateAction } from 'react'
 
-import { HeaderStyled, InterviewCalendarStyled, AddButton } from './Header.styled'
+import {
+	HeaderStyled,
+	InterviewCalendarStyled,
+	AddButton
+} from './Header.styled'
 import { DaySelector } from './components/DaySelector'
 import { DayEvent } from '../EventNotepad/types'
 
@@ -11,7 +15,12 @@ interface HeaderProps {
 	setSelectedHourEvent: Dispatch<SetStateAction<DayEvent>>
 }
 
-export const Header: FC<HeaderProps> = ({selectedDay, setSelectedDay, selectedHourEvent, setSelectedHourEvent}) => {
+export const Header: FC<HeaderProps> = ({
+	selectedDay,
+	setSelectedDay,
+	selectedHourEvent,
+	setSelectedHourEvent
+}) => {
 	const onClickCreateEvent: MouseEventHandler<HTMLButtonElement> = () => {
 		const newEvent = prompt('Что вы запланировали?')
 		const newSelectedHourEvent = {
@@ -27,7 +36,11 @@ export const Header: FC<HeaderProps> = ({selectedDay, setSelectedDay, selectedHo
 				<p>Interview calendar</p>
 				<AddButton onClick={onClickCreateEvent}>+</AddButton>
 			</InterviewCalendarStyled>
-			<DaySelector selectedDay={selectedDay} setSelectedDay={setSelectedDay} setSelectedHourEvent={setSelectedHourEvent} />
+			<DaySelector
+				selectedDay={selectedDay}
+				setSelectedDay={setSelectedDay}
+				setSelectedHourEvent={setSelectedHourEvent}
+			/>
 		</HeaderStyled>
 	)
 }
