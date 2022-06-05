@@ -32,9 +32,10 @@ export const DaySelector: FC<DaySelectorProps> = ({
 		const newWeekArray: WeekDay[] = []
 
 		for (let i = 1; i <= 7; i++) {
+			const weekday = moment(selectedDay).subtract(1, 'days').weekday(i)
 			newWeekArray.push({
-				stringDate: moment(selectedDay).weekday(i).format('DD/dddd/MMMM/YYYY'),
-				ISOFormat: moment(selectedDay).weekday(i).toISOString()
+				stringDate: weekday.format('DD/dddd/MMMM/YYYY'),
+				ISOFormat: weekday.toISOString()
 			})
 		}
 
